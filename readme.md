@@ -1,4 +1,3 @@
 # Socarrat Environment
 
-This library parses environment variables from shell and `.env` files.
-
+A super simple `.env` file parser that is compatible with `getenv()`.

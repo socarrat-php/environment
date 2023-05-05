@@ -1,6 +1,6 @@
 {
 	"name": "socarrat/environment",
-	"description": "This library parses .env files and loads their contents into PHP's environment.",
+	"description": "A super simple dotenv file parser that is compatible with getenv().",
 	"type": "library",
 	"license": "MIT",
 	"autoload": {
