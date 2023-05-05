@@ -3,20 +3,37 @@
 namespace Socarrat\Environment;
 
 class EnvironmentManager {
+	/**
+	 * The order in which `.env` files are loaded.
+	 *
+	 * Lower index means higher importance.
+	 */
 	static protected $fileOrder = [
-		// Higher = more important
 		".env.local",
 		".env.shared",
 		".env",
 	];
 
+	/**
+	 * The parsed environment as an associative array.
+	 *
+	 * Both keys and values are strings.
+	 */
 	static protected $environment = array();
 
-	static public function setFileOrder(array $order) {
+	/**
+	 * Sets the order in which `.env` files are loaded.
+	 *
+	 * Lower index means higher importance.
+	 */
+	static public function setFileOrder(array $order): void {
 		static::$fileOrder = $order;
 	}
 
-	static protected function escapeValue(string $val) {
+	/**
+	 * Escapes a raw value as encountered in a `.env` file.
+	 */
+	static protected function escapeValue(string $val): string {
 		$val = str_replace("\\n", "\n", $val);
 		$val = str_replace("\\t", "\t", $val);
 		$val = str_replace("\\\"", "\"", $val);
@@ -24,7 +41,10 @@ class EnvironmentManager {
 		return $val;
 	}
 
-	static protected function saveEnv(array $env, bool $putenv) {
+	/**
+	 * Saves the provided environment variables.
+	 */
+	static protected function saveEnv(array $env, bool $putenv): void {
 		// Set provided environment variables, and make sure not to completely
 		// override the entire array. Instead merge the two.
 		foreach ($env as $key => $value) {
@@ -39,6 +59,9 @@ class EnvironmentManager {
 		}
 	}
 
+	/**
+	 * This is the base parse function. It parses `.env` files line by line.
+	 */
 	static protected function parseLineByLine(array $lines): array {
 		$parsedEnv = array();
 
@@ -151,6 +174,14 @@ class EnvironmentManager {
 		return $parsedEnv;
 	}
 
+	/**
+	 * Parses `.env` files from the filesystem.
+	 *
+	 * This method reads the files in the order specified in EnvironmentManager::$fileOrder. You can set this order using EnvironmentManager::setFileOrder.
+	 *
+	 * @param $rootDir The root directory which contains your `.env` file/s.
+	 * @param $putenv Whether to register the values with PHP's environment, so that they can be retrieved using `getenv()`.
+	 */
 	static public function parseFS(string $rootDir, bool $putenv = true) {
 		$env = array();
 
@@ -176,6 +207,12 @@ class EnvironmentManager {
 		return $env;
 	}
 
+	/**
+	 * Parses a single `.env` file passed as a string.
+	 *
+	 * @param $rootDir The root directory which contains your `.env` file/s.
+	 * @param $putenv Whether to register the values with PHP's environment, so that they can be retrieved using `getenv()`.
+	 */
 	static public function parseString(string $envFile, bool $putenv = true) {
 		// Parse the passed string...
 		$env = static::parseLineByLine(
@@ -188,6 +225,9 @@ class EnvironmentManager {
 		return $env;
 	}
 
+	/**
+	 * Returns all parsed environment variables as an associative array.
+	 */
 	static public function getParsedEnv() {
 		return static::$environment;
 	}
