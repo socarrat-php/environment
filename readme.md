@@ -2,6 +2,71 @@
 
 A super simple `.env` file parser that is compatible with `getenv()`.
 
+## `.env` file format
+
+### The basics
+
+A `.env` file contains key-value pairs of environment-specific settings. Each line contains a key-value pair. Keys [should](https://www.rfc-editor.org/rfc/rfc2119#section-3) be capitalised, and should only contain A-Z characters and underscores. Thereafter comes an `=` sign, and then the value. See the following example:
+
+```
+DB_ENGINE=mysql
+DB_NAME=example
+```
+
+### Quoted values
+
+To avoid confusion, you could enclose the value in _double_ quotes `"`.
+
+```
+DB_PASSWORD="Welkom2018"
+```
+
+Note that single quotes `'` are NOT stripped from the value! For example, the value of `DB_TABLE='users'` is `'users'` and not `users`.
+
+### Multi-line values
+
+Multi-line values are supported, provided that the value is enclosed in double quotes.
+
+```
+TEXT="Calculate density using:
+
+  ρ = m/V
+
+where ρ is the density,
+      m is the mass,
+  and V is the volume.
+"
+```
+
+### Special characters
+
+You can use the following special characters in your values:
+
+| Name               | Notation |
+|--------------------|----------|
+| Backslash (`\`)    | `\\`     |
+| Double quote (`"`) | `\"`     |
+| Newline            | `\n`     |
+| Tab                | `\t`     |
+
+Example:
+
+```
+ESCAPED_VALUES="Escape \t tabs \t, \n newlines \n, and \"quotes\" with a \\backslash\\"
+```
+
+### Whitespace handling
+
+Whitespace is handled thus:
+
+* Leading whitespace before keys is ignored.
+
+* Trailing whitespace after values is always trimmed, except when the value including whitespace is enclosed by double quotes.
+
+* Leading whitespace on a newline that is part of the value is honoured.
+
+* Trailing whitespace on a newline that is part of the value is always ignored, except when the line is the last line that is part of the value and the whitespace comes before the closing double quote.
+
 ## API
 
 ### `class Socarrat\Environment\EnvironmentManager`
