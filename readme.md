@@ -14,7 +14,7 @@ Returns all parsed environment variables as an associative array.
 
 Parses `.env` files from the filesystem.
 
-This method reads the files in the order specified in EnvironmentManager::$fileOrder. You can set this order using setFileOrder.
+This method reads the files in the order specified in EnvironmentManager::$fileOrder. You can set this order using [setFileOrder](#static-public-function-setfileorderarray-order-void).
 
 | Parameter name | Type      | Default value | Description                                                                                            |
 |----------------|-----------|---------------|--------------------------------------------------------------------------------------------------------|
