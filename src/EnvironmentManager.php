@@ -22,6 +22,13 @@ class EnvironmentManager {
 	static protected $environment = array();
 
 	/**
+	 * Returns all parsed environment variables as an associative array.
+	 */
+	static public function getParsedEnv(): array {
+		return static::$environment;
+	}
+
+	/**
 	 * Sets the order in which `.env` files are loaded.
 	 *
 	 * Lower index means higher importance.
@@ -204,13 +211,12 @@ class EnvironmentManager {
 
 		// Almost done...
 		static::saveEnv($env, $putenv);
-		return $env;
 	}
 
 	/**
 	 * Parses a single `.env` file passed as a string.
 	 *
-	 * @param $rootDir The root directory which contains your `.env` file/s.
+	 * @param $envFile The string to parse.
 	 * @param $putenv Whether to register the values with PHP's environment, so that they can be retrieved using `getenv()`.
 	 */
 	static public function parseString(string $envFile, bool $putenv = true) {
@@ -222,13 +228,5 @@ class EnvironmentManager {
 
 		// Save it.
 		static::saveEnv($env, $putenv);
-		return $env;
-	}
-
-	/**
-	 * Returns all parsed environment variables as an associative array.
-	 */
-	static public function getParsedEnv() {
-		return static::$environment;
 	}
 }
