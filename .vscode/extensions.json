@@ -1,0 +1,7 @@
+{
+	"recommendations": [
+		"devsense.composer-php-vscode",
+		"xdebug.php-debug",
+		"devsense.phptools-vscode"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"name": "socarrat/environment",
+	"description": "This library parses .env files and loads their contents into PHP's environment.",
+	"type": "library",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"Socarrat\\Environment\\": "src/"
+		}
+	},
+	"authors": [
+		{
+			"name": "Romein van Buren",
+			"email": "romein@vburen.nl"
+		}
+	]
+}
