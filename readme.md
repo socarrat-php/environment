@@ -14,6 +14,7 @@ A super simple `.env` file parser that is compatible with [`getenv()`](https://w
 - [x] [Well-tested](#testing)
 - [x] [Multi-line values](#multi-line-values)
 - [ ] Support for comments (WIP)
+- [ ] Invalid file warnings (WIP)
 
 ## Installation
 
