@@ -1,8 +1,24 @@
 # Socarrat\Environment
 
-A super simple `.env` file parser that is compatible with `getenv()`.
+A super simple `.env` file parser that is compatible with [`getenv()`](https://www.php.net/manual/en/function.getenv.php).
 
 [![Test](https://github.com/socarrat-php/environment/actions/workflows/test.yml/badge.svg?event=push)](https://github.com/socarrat-php/environment/actions/workflows/test.yml)
+
+## Installation
+
+Download this [package](https://packagist.org/packages/socarrat/environment) on Packagist:
+
+```sh
+composer require socarrat/environment
+```
+
+## Usage
+
+The [`EnvironmentManager`](#class-socarratenvironmentenvironmentmanager) is responsible for parsing `.env` files [on the filesystem](#static-public-function-parsefsstring-rootdir-bool-putenv--true) (or, if you like, [as strings](#static-public-function-parsestringstring-envfile-bool-putenv--true)). It does so on request: you need to call one (or more) of the parsing methods (see [API](#api)) to load your environment variables.
+
+### How about `getenv()`?
+
+One of the parameters of the parse functions is `bool $putenv`. If you set this to true (default), [`putenv()`](https://www.php.net/manual/en/function.putenv.php) will be called for every parsed variable. If you already use `getenv()`, there's no need to adapt your program: you only need to call a parse function once at the start.
 
 ## `.env` file format
 
@@ -110,6 +126,10 @@ The default file order is:
 	".env",
 ]
 ```
+
+## Testing
+
+This library is unit-tested by [PHPunit](https://phpunit.de/) using the tests in the [`tests/` directory](./tests/). You can run the test suite on your machine (`composer run-script test`). Test results for each commit (run on Ubuntu 22.04) are available [on GitHub](https://github.com/socarrat-php/environment/actions/workflows/test.yml).
 
 ## Copyright
 
