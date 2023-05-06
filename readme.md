@@ -4,6 +4,17 @@ A super simple `.env` file parser that is compatible with [`getenv()`](https://w
 
 [![Test](https://github.com/socarrat-php/environment/actions/workflows/test.yml/badge.svg?event=push)](https://github.com/socarrat-php/environment/actions/workflows/test.yml)
 
+## Features
+
+- [x] Parses `.env` files and does it well
+- [x] Parses `.env` files from the filesystem and from string input
+- [x] [Special characters](#special-characters)
+- [x] [Compatible with `getenv()`](#how-about-getenv): no need to adapt your existing applications
+- [x] Fault-tolerant
+- [x] [Well-tested](#testing)
+- [x] [Multi-line values](#multi-line-values)
+- [ ] Support for comments (WIP)
+
 ## Installation
 
 Download this [package](https://packagist.org/packages/socarrat/environment) on Packagist:
@@ -19,6 +30,10 @@ The [`EnvironmentManager`](#class-socarratenvironmentenvironmentmanager) is resp
 ### How about `getenv()`?
 
 One of the parameters of the parse functions is `bool $putenv`. If you set this to true (default), [`putenv()`](https://www.php.net/manual/en/function.putenv.php) will be called for every parsed variable. If you already use `getenv()`, there's no need to adapt your program: you only need to call a parse function once at the start.
+
+### Examples
+
+See the [`examples/` directory](./examples/) for some usage examples.
 
 ## `.env` file format
 
