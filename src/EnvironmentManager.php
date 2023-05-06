@@ -119,8 +119,8 @@ class EnvironmentManager {
 				}
 
 				// Extract key and value
-				$key = substr($line, 0, $equalIndex);
-				$val = substr($line, $equalIndex + 1);
+				$key = rtrim(substr($line, 0, $equalIndex));
+				$val = ltrim(substr($line, $equalIndex + 1));
 
 				// Value starts and ends with " character: trim them off.
 				if (($val[0] === "\"") and (substr($val, -1) === "\"")) {
@@ -196,7 +196,7 @@ class EnvironmentManager {
 		foreach (static::$fileOrder as $fname) {
 			// Read file line by line.
 			$path = preg_replace('#/+#', '/', $rootDir."/".$fname);
-			$lines = file($path);
+			$lines = @file($path);
 
 			// Continue if file is not found.
 			if ($lines === false) {
