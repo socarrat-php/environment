@@ -45,11 +45,11 @@ where ρ is the density,
 You can use the following special characters in your values:
 
 | Name               | Notation |
-|--------------------|----------|
-| Backslash (`\`)    | `\\`     |
-| Double quote (`"`) | `\"`     |
-| Newline            | `\n`     |
-| Tab                | `\t`     |
+|--------------------|:--------:|
+| Backslash (`\`)    |   `\\`   |
+| Double quote (`"`) |   `\"`   |
+| Newline            |   `\n`   |
+| Tab                |   `\t`   |
 
 Example:
 
