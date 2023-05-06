@@ -2,6 +2,8 @@
 
 A super simple `.env` file parser that is compatible with `getenv()`.
 
+[![Test](https://github.com/socarrat-php/environment/actions/workflows/test.yml/badge.svg?event=push)](https://github.com/socarrat-php/environment/actions/workflows/test.yml)
+
 ## `.env` file format
 
 ### The basics
